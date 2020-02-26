@@ -11,7 +11,7 @@ from .serializers import ClothSerializer
 cgDict = {
     'outer': 1,
     'top' : 2,
-
+    'bottom':3,
 }
 
 class ListCloth(generics.ListCreateAPIView):
