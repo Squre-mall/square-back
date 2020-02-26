@@ -51,6 +51,8 @@ REST_FRAMEWORK = {
     ]
 }
 
+CORS_ORIGIN_ALLOW_ALL=True
+
 # script안에서의 리소스 요청을 허용할 도메인 추가
 CORS_ORIGIN_WHITELIST = [
     'http://localhost:3000',
@@ -58,7 +60,8 @@ CORS_ORIGIN_WHITELIST = [
 
 
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware',     # 추가
+    'corsheaders.middleware.CorsMiddleware',        # 추가
+    'django.middleware.common.CommonMiddleware',    # 추가
 
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
