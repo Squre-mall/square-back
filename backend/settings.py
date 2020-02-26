@@ -58,7 +58,7 @@ REST_FRAMEWORK = {
 # script안에서의 리소스 요청을 허용할 도메인 추가
 CORS_ORIGIN_WHITELIST = [
     'http://localhost:3000',
-    'https://squre-mall.github.io/',
+    'https://squre-mall.github.io',
 ]
 
 
