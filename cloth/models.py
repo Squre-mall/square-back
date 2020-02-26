@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 
 # Create your models here.
 class Cloth(models.Model):
@@ -8,8 +9,8 @@ class Cloth(models.Model):
     clothImg = models.URLField()
     price = models.CharField(max_length=100)
     category = models.IntegerField()
-    created = models.DateTimeField(auto_now_add=True)
-    modified = models.DateTimeField(auto_now=True)
+    created = models.DateTimeField(auto_now_add=True, default=timezone.now, editable=False)
+    modified = models.DateTimeField(auto_now=True, default=timezone.now, editable=False)
 
 
     def __str__(self):
