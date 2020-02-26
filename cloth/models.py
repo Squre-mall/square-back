@@ -5,11 +5,13 @@ class Cloth(models.Model):
     # id = models.IntegerField(primary_key=True)
     brand = models.CharField(max_length=200)
     title = models.CharField(max_length=200)
-    date = models.CharField(max_length=100)
-    clothImg = models.TextField(blank=True)
+    clothImg = models.URLField()
     price = models.CharField(max_length=100)
     category = models.IntegerField()
+    created = models.DateTimeField(auto_now_add=True)
+    modified = models.DateTimeField(auto_now=True)
+
 
     def __str__(self):
         """A string representation of the model."""
-        return self.title
+        return [self.id, self.title, self.crdate]
