@@ -13,8 +13,16 @@ class Cloth(models.Model):
     clothImg = models.URLField()
     price = models.CharField(max_length=100)
     category = models.IntegerField()
-    created = models.DateTimeField(auto_now_add=True, default=timezone.now, editable=False)
-    modified = models.AutoDateTimeField(auto_now=True, default=timezone.now, editable=False)
+
+    created = models.DateTimeField(editable=False)
+    modified = models.DateTimeField()
+
+    def save(self, *args, **kwargs):
+        ''' On save, update timestamps '''
+        if not self.id:
+            self.created = timezone.now()
+        self.modified = timezone.now()
+        return super(Cloth, self).save(*args, **kwargs)
 
 
     def __str__(self):
