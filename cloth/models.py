@@ -10,14 +10,14 @@ class Cloth(models.Model):
     price = models.CharField(max_length=100)
     category = models.IntegerField()
 
-    created = models.DateTimeField(editable=False)
-    modified = models.DateTimeField(editable=False)
-    def save(self, *args, **kwargs):
-        ''' On save, update timestamps '''
-        if not self.id:
-            self.created = timezone.now()
-        self.modified = timezone.now()
-        return super(Cloth, self).save(*args, **kwargs)
+    # created = models.DateTimeField(editable=False)
+    # modified = models.DateTimeField(editable=False)
+    # def save(self, *args, **kwargs):
+    #     ''' On save, update timestamps '''
+    #     if not self.id:
+    #         self.created = timezone.now()
+    #     self.modified = timezone.now()
+    #     return super(Cloth, self).save(*args, **kwargs)
 
     def __str__(self):
         """A string representation of the model."""
