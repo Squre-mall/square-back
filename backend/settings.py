@@ -25,11 +25,13 @@ SECRET_KEY = 'ki4##&qq+3i)pg6vki!9qzn)b-frw5rm2j28%@_rj$#pz-wld_'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = [
+    # '.pythonanywhere.com',
+    '*',
+]
 
 
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -44,21 +46,25 @@ INSTALLED_APPS = [
     'corsheaders',
 ]
 
-#추가
+# 추가
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.AllowAny',
     ]
 }
 
+# CORS_ORIGIN_ALLOW_ALL=True
+
 # script안에서의 리소스 요청을 허용할 도메인 추가
 CORS_ORIGIN_WHITELIST = [
     'http://localhost:3000',
+    'https://squre-mall.github.io',
 ]
 
 
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware',     # 추가
+    'corsheaders.middleware.CorsMiddleware',        # 추가
+    'django.middleware.common.CommonMiddleware',    # 추가
 
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
