@@ -10,7 +10,7 @@ class Cloth(models.Model):
     clothImgUrl = models.URLField()
     pageUrl = models.URLField()
     price = models.CharField(max_length=100)
-    category = models.IntegerField()
+    category = models.CharField(max_length=100)
 
     created = models.DateTimeField(editable=False)
     modified = models.DateTimeField(editable=False)
