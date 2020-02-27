@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'cloth',
     'rest_framework',
     'corsheaders',
+    'django_filters',
 ]
 
 # 추가
