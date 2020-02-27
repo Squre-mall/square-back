@@ -8,15 +8,21 @@ from django.http import Http404
 from .models import Cloth
 from .serializers import ClothSerializer
 
+from django_filters.rest_framework import DjangoFilterBackend
+
 cgDict = {
     'outer': 1,
     'top' : 2,
-
+    'bottom':3,
 }
 
 class ListCloth(generics.ListCreateAPIView):
     queryset = Cloth.objects.all()
     serializer_class = ClothSerializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ClothSerializer.Meta.fields
+    search_fields = ClothSerializer.Meta.fields
+    ordering_fields = ClothSerializer.Meta.fields
 
 class DetailCloth(generics.RetrieveUpdateDestroyAPIView):
     queryset = Cloth.objects.all()

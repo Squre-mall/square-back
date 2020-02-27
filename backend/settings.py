@@ -44,13 +44,17 @@ INSTALLED_APPS = [
     'cloth',
     'rest_framework',
     'corsheaders',
+    'django_filters',
 ]
 
 # 추가
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.AllowAny',
-    ]
+    ],
+    'DEFAULT_FILTER_BACKENDS': [
+        'django_filters.rest_framework.DjangoFilterBackend'
+    ],
 }
 
 # CORS_ORIGIN_ALLOW_ALL=True
@@ -99,12 +103,28 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'squaremall',
+        'USER': 'root',
+        'PASSWORD': '82134',
+        'HOST': 'localhost',
+        'PORT': '3306',
     }
 }
+
+# pythonanywhere용 설정
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'squaremall$squaremall',
+#         'USER': 'squaremall',
+#         'PASSWORD': 'admin123',
+#         'HOST': 'squaremall.mysql.pythonanywhere-services.com',
+#     }
+# }
 
 
 # Password validation

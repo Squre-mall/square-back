@@ -6,9 +6,11 @@ class Cloth(models.Model):
     # id = models.IntegerField(primary_key=True)
     brand = models.CharField(max_length=200)
     title = models.CharField(max_length=200)
-    clothImg = models.URLField()
+    description = models.TextField(default='상품 설명', blank=True, null=True)
+    clothImgUrl = models.URLField()
+    pageUrl = models.URLField()
     price = models.CharField(max_length=100)
-    category = models.IntegerField()
+    category = models.CharField(max_length=100)
 
     created = models.DateTimeField(editable=False)
     modified = models.DateTimeField(editable=False)
