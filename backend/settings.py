@@ -115,6 +115,17 @@ DATABASES = {
     }
 }
 
+# pythonanywhere용 설정
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'squaremall$squaremall',
+#         'USER': 'squaremall',
+#         'PASSWORD': 'admin123',
+#         'HOST': 'squaremall.mysql.pythonanywhere-services.com',
+#     }
+# }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
