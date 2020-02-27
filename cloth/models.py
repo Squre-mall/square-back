@@ -6,6 +6,7 @@ class Cloth(models.Model):
     # id = models.IntegerField(primary_key=True)
     brand = models.CharField(max_length=200)
     title = models.CharField(max_length=200)
+    date = models.CharField(max_length=100, null=True) # 임시
     clothImg = models.URLField()
     price = models.CharField(max_length=100)
     category = models.IntegerField()
