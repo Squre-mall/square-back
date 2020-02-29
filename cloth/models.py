@@ -4,12 +4,14 @@ from django.utils import timezone
 # Create your models here.
 class Cloth(models.Model):
     # id = models.IntegerField(primary_key=True)
+    productNo = models.CharField(max_length=200)
     brand = models.CharField(max_length=200)
     title = models.CharField(max_length=200)
-    description = models.TextField(default='상품 설명', blank=True, null=True)
+    description = models.TextField(blank=True, null=True)
     clothImgUrl = models.URLField()
-    pageUrl = models.URLField()
+    # pageUrl = models.URLField() # productNo로 대체
     price = models.CharField(max_length=100)
+    gender = models.CharField(max_length=100)
     category = models.CharField(max_length=100)
 
     created = models.DateTimeField(editable=False)
@@ -23,4 +25,5 @@ class Cloth(models.Model):
 
     def __str__(self):
         """A string representation of the model."""
-        return [self.id, self.title, self.crdate]
+        return '{} / {} / {} / {}'\
+            .format(self.id, self.productNo, self.title, self.category)

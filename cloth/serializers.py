@@ -3,5 +3,5 @@ from .models import *
 
 class ClothSerializer(serializers.ModelSerializer):
     class Meta:
-        fields = '__all__'
+        fields = ('id',) + tuple(a.name for a in Cloth._meta.get_fields())
         model = Cloth
