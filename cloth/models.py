@@ -1,8 +1,9 @@
 from django.db import models
 from django.utils import timezone
+from django_mysql import models as mysqlModel
 
 # Create your models here.
-class Cloth(models.Model):
+class Cloth(models.Model, mysqlModel.Model):
     # id = models.IntegerField(primary_key=True)
     productNo = models.CharField(max_length=200)
     brand = models.CharField(max_length=200)
@@ -10,7 +11,8 @@ class Cloth(models.Model):
     description = models.TextField(blank=True, null=True)
     clothImgSuffix = models.CharField(max_length=300)
     # pageUrl = models.URLField() # productNo로 대체
-    price = models.CharField(max_length=100)
+    price = mysqlModel.JSONField()
+    # price = models.CharField(max_length=100)
     gender = models.CharField(max_length=100)
     category = models.CharField(max_length=100)
 
