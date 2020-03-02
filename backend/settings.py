@@ -40,11 +40,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'django-mysql',
+
     # 추가
     'cloth',
     'rest_framework',
     'corsheaders',
     'django_filters',
+
 ]
 
 # 추가
