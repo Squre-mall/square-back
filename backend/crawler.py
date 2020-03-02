@@ -48,16 +48,12 @@ def musinsa_crawling():
                 productNo = tmp_a.get('href').split('/')[-2]
                 brand = item.select_one('div.li_inner > div.article_info > p.item_title > a').get_text()
                 title = item.select_one('div.li_inner > div.article_info > p.list_info > a').get('title').replace('  ', ' ')
-                description = '1'
+                description = None
                 clothImgUrl = tmp_a.find('img').get('data-original')
-                price = item.select_one('div.li_inner > div.article_info > p.price').get_text().split()[-1]
-                # TODO
-                TODO = """
-                price가 두개인경우 존재(세일상품)
-                1. 세일여부 컬럼을 추가하여 관리
-                2. 그냥 세일 가격만 저장
-                3. 세일 전/후 가격 둘다 저장(리스트형식)
-                """
+
+                # 원래 가격, 할인된 가격
+                original_price, discounted_price = item.select_one('div.li_inner > div.article_info > p.price').get_text().split()
+
                 gender = item.select_one('div.icon_group > ul > li').get_text()
                 category = categ
             except:

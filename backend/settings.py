@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'django-mysql',
+    'django_mysql',
 
     # 추가
     'cloth',
