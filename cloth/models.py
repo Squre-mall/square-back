@@ -8,7 +8,7 @@ class Cloth(models.Model):
     brand = models.CharField(max_length=200)
     title = models.CharField(max_length=200)
     description = models.TextField(blank=True, null=True)
-    clothImgUrl = models.URLField()
+    clothImgSuffix = models.CharField(max_length=300)
     # pageUrl = models.URLField() # productNo로 대체
     price = models.CharField(max_length=100)
     gender = models.CharField(max_length=100)
@@ -27,3 +27,6 @@ class Cloth(models.Model):
         """A string representation of the model."""
         return '{} / {} / {} / {}'\
             .format(self.id, self.productNo, self.title, self.category)
+
+class Cloth_Detail_Musinsa(models.Model):
+    pass
