@@ -21,8 +21,8 @@ cloth_Detail_Musinsa_fields_names = tuple(field.name for field in cloth_Detail_M
 
 def musinsa_crawling():
     musinsa_category_codes_dict = {
-        'top': '001',
-        # 'outer': '002',
+        # 'top': '001',
+        'outer': '002',
     }
     musinsa_store_url = 'https://store.musinsa.com/'
     musinsa_store_detail_url = 'https://store.musinsa.com/app/product/detail/'
@@ -58,8 +58,9 @@ def musinsa_crawling():
 
                 gender = item.select_one('div.icon_group > ul > li').get_text()
                 category = categ
-            except:
-                print(title, 'error')
+            except Exception as e:
+                print('Cloth URL:', url)
+                print(e, 'Error 발생!')
 
             for field_name in cloth_fields_names:
                 itemDict.update({field_name: locals()[field_name]})
@@ -73,43 +74,46 @@ def musinsa_crawling():
             html = req.text
             soup = BeautifulSoup(html, 'lxml')
 
-            # 제품 설명
-            tmp_opinion = soup.select_one('#opinion_con')
-            if tmp_opinion: description = tmp_opinion.get_text()
-            else: description = None
-
-            # 시즌, 성별, 인기도(1개월)
-            tmp_article = soup.select_one('#product_order_info > div.explan_product.product_info_section > ul')
-            tmp_p = tmp_article.select_one('li:nth-child(2) > p.product_article_contents')
-            season = ' '.join(tmp_p.find('strong').get_text().split())
-            gender = tmp_p.select_one('span.txt_gender > span').get_text()
-            monthlyPopularity = tmp_article.select_one('li:nth-child(3) > p.product_article_contents'
-                                                       ' > strong').get_text()
-
-            # 상세 이미지
-
             try:
-                tmp_imgs = soup.select('#detail_view img')
-                detailImageUrlList = [u.get('src') for u in tmp_imgs
-                                      if os.path.splitext(u.get('src'))[1]]
-            except:
-                print(item_detail_url, 'img url 가져오기 오류!')
+                # 제품 설명
+                tmp_opinion = soup.select_one('#opinion_con')
+                if tmp_opinion: description = tmp_opinion.get_text()
+                else: description = None
 
-            # 추가정보
-            tmp_tbody = soup.select_one('#page_product_detail > div.right_area.page_detail_product'
-                                        ' > div.right_contents.product_info_contents > div.product_info_table'
-                                        ' > table > tbody')
+                # 시즌, 성별, 인기도(1개월)
+                tmp_article = soup.select_one('#product_order_info > div.explan_product.product_info_section > ul')
+                tmp_p = tmp_article.select_one('li:nth-child(2) > p.product_article_contents')
+                season = ' '.join(tmp_p.find('strong').get_text().split())
+                gender = tmp_p.select_one('span.txt_gender > span').get_text()
+                monthlyPopularity = tmp_article.select_one('li:nth-child(3) > p.product_article_contents'
+                                                           ' > strong').get_text()
 
-            color = tmp_tbody.select_one('tr:nth-child(1) > td:nth-child(2)').get_text()
-            sizeNweight = tmp_tbody.select_one('tr:nth-child(1) > td:nth-child(4)').get_text()
-            importation = tmp_tbody.select_one('tr:nth-child(2) > td:nth-child(2)').get_text()
-            manufacturer = tmp_tbody.select_one('tr:nth-child(2) > td:nth-child(4)').get_text()
-            manufacturingYM = tmp_tbody.select_one('tr:nth-child(3) > td:nth-child(2)').get_text()
-            manufactured = tmp_tbody.select_one('tr:nth-child(3) > td:nth-child(4)').get_text()
-            material = tmp_tbody.select_one('tr:nth-child(4) > td:nth-child(2)').get_text()
-            asdirector = tmp_tbody.select_one('tr:nth-child(4) > td:nth-child(4)').get_text()
-            precautions = tmp_tbody.select_one('tr:nth-child(5) > td:nth-child(2)').get_text()
-            warrantyBasis = tmp_tbody.select_one('tr:nth-child(6) > td:nth-child(2)').get_text()
+                # 상세 이미지
+                try:
+                    tmp_imgs = soup.select('#detail_view img')
+                    detailImageUrlList = [u.get('src') for u in tmp_imgs
+                                          if os.path.splitext(u.get('src'))[1]]
+                except:
+                    print(item_detail_url, 'img url 가져오기 오류!')
+
+                # 추가정보
+                tmp_tbody = soup.select_one('#page_product_detail > div.right_area.page_detail_product'
+                                            ' > div.right_contents.product_info_contents > div.product_info_table'
+                                            ' > table > tbody')
+
+                color = tmp_tbody.select_one('tr:nth-child(1) > td:nth-child(2)').get_text()
+                sizeNweight = tmp_tbody.select_one('tr:nth-child(1) > td:nth-child(4)').get_text()
+                importation = tmp_tbody.select_one('tr:nth-child(2) > td:nth-child(2)').get_text()
+                manufacturer = tmp_tbody.select_one('tr:nth-child(2) > td:nth-child(4)').get_text()
+                manufacturingYM = tmp_tbody.select_one('tr:nth-child(3) > td:nth-child(2)').get_text()
+                manufactured = tmp_tbody.select_one('tr:nth-child(3) > td:nth-child(4)').get_text()
+                material = tmp_tbody.select_one('tr:nth-child(4) > td:nth-child(2)').get_text()
+                asdirector = tmp_tbody.select_one('tr:nth-child(4) > td:nth-child(4)').get_text()
+                precautions = tmp_tbody.select_one('tr:nth-child(5) > td:nth-child(2)').get_text()
+                warrantyBasis = tmp_tbody.select_one('tr:nth-child(6) > td:nth-child(2)').get_text()
+            except Exception as e:
+                print('Detail URL:', item_detail_url)
+                print(e, "Error 발생!")
 
             for field_name in cloth_Detail_Musinsa_fields_names:
                 itemDetailDict.update({field_name: locals()[field_name]})
@@ -136,8 +140,8 @@ def musinsa_crawling():
                 c_detail = Cloth_Detail_Musinsa(**itemDetailDict)
                 c_detail.save()
 
-            pprint.pprint(itemDict)
-            pprint.pprint(itemDetailDict)
+            # pprint.pprint(itemDict)
+            # pprint.pprint(itemDetailDict)
 
 
 
