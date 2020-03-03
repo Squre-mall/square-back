@@ -14,6 +14,6 @@ urlpatterns = [
 
     path('', views.ListCloth.as_view()),
     path('<int:pk>/', views.DetailCloth.as_view()),
-    # path('<str:category>/', views.ListCategory.as_view()),
-    # path('<str:category>/<int:pk>/', views.DetailCategory.as_view()),
+    path('detail/', views.ListClothDetailMusinsa.as_view()),
+    path('detail/<int:pk>/', views.DetailClothDetailMusinsa.as_view()),
 ]
