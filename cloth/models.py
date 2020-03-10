@@ -50,7 +50,7 @@ class Cloth_Detail_Musinsa(models.Model):
     manufactured = models.CharField(max_length=100)
     asdirector = models.CharField(max_length=100)
     precautions = models.CharField(max_length=500)
-    warrantyBasis = models.CharField(max_length=100)
+    warrantyBasis = models.CharField(max_length=200)
 
     def __str__(self):
         """A string representation of the model."""
