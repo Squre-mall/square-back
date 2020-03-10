@@ -21,8 +21,9 @@ cloth_Detail_Musinsa_fields_names = tuple(field.name for field in cloth_Detail_M
 
 def musinsa_crawling():
     musinsa_category_codes_dict = {
-        # 'top': '001',
+        'top': '001',
         'outer': '002',
+        'pants': '003',
     }
     musinsa_store_url = 'https://store.musinsa.com/'
     musinsa_store_detail_url = 'https://store.musinsa.com/app/product/detail/'
@@ -44,7 +45,12 @@ def musinsa_crawling():
             try:
                 tmp_a = item.select_one('div.li_inner > div.list_img > a')
                 productNo = tmp_a.get('href').split('/')[-2]
-                clothImgSuffix = tmp_a.find('img').get('data-original').split('goods_img/')[1]
+
+                # 이미지 500으로 수정
+                clothImgSuffixList = list(os.path.splitext(tmp_a.find('img').get('data-original').split('goods_img/')[1]))
+                clothImgSuffixList[0] = clothImgSuffixList[0][:-3] + '500'
+                clothImgSuffix = ''.join(clothImgSuffixList)
+
                 brand = item.select_one('div.li_inner > div.article_info > p.item_title > a').get_text()
                 title = item.select_one('div.li_inner > div.article_info > p.list_info > a').get('title').replace('  ', ' ')
 
@@ -89,12 +95,12 @@ def musinsa_crawling():
                                                            ' > strong').get_text()
 
                 # 상세 이미지
-                try:
-                    tmp_imgs = soup.select('#detail_view img')
-                    detailImageUrlList = [u.get('src') for u in tmp_imgs
-                                          if os.path.splitext(u.get('src'))[1]]
-                except:
-                    print(item_detail_url, 'img url 가져오기 오류!')
+                # try:
+                #     tmp_imgs = soup.select('#detail_view img')
+                #     detailImageUrlList = [u.get('src') for u in tmp_imgs
+                #                           if os.path.splitext(u.get('src'))[1] in img_extension_list]
+                # except:
+                #     print(item_detail_url, 'img url 가져오기 오류!')
 
                 # 추가정보
                 tmp_tbody = soup.select_one('#page_product_detail > div.right_area.page_detail_product'
@@ -119,6 +125,14 @@ def musinsa_crawling():
                 itemDetailDict.update({field_name: locals()[field_name]})
 
             ###########
+            # TESTING #
+            ###########
+            # pprint.pprint(itemDict)
+            # pprint.pprint(itemDetailDict)
+            # break
+
+
+            ###########
             # DB 저장 #
             ###########
 
@@ -140,8 +154,7 @@ def musinsa_crawling():
                 c_detail = Cloth_Detail_Musinsa(**itemDetailDict)
                 c_detail.save()
 
-            # pprint.pprint(itemDict)
-            # pprint.pprint(itemDetailDict)
+
 
 
 
