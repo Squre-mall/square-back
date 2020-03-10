@@ -37,10 +37,10 @@ class Cloth_Detail_Musinsa(models.Model):
     season = models.CharField(max_length=100)
     gender = models.CharField(max_length=100)
     monthlyPopularity = models.CharField(max_length=100)
-    detailImageUrlList = ListTextField(
-        base_field=models.CharField(max_length=200),
-        size=50,
-    )
+    # detailImageUrlList = ListTextField(
+    #     base_field=models.CharField(max_length=200),
+    #     size=50,
+    # )
     color = models.CharField(max_length=100)
     importation = models.CharField(max_length=100)
     manufacturingYM = models.CharField(max_length=100)
@@ -50,7 +50,7 @@ class Cloth_Detail_Musinsa(models.Model):
     manufactured = models.CharField(max_length=100)
     asdirector = models.CharField(max_length=100)
     precautions = models.CharField(max_length=500)
-    warrantyBasis = models.CharField(max_length=100)
+    warrantyBasis = models.CharField(max_length=200)
 
     def __str__(self):
         """A string representation of the model."""
