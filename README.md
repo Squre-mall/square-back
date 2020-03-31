@@ -1,7 +1,8 @@
 # django-restapi-squaremall
 React와 연동하기 위하여 구현한 Django Rest Framework(DRF)를 이용한 REST API
 
-> 쇼핑몰을 주제로한 웹 앱 구현에 front-end는 ``React``를, back-end는 ``Django``를 사용하여 구현하기로 결정하고 back-end 부분을 맡아서 진행
+> 쇼핑몰을 주제로한 웹 앱 구현에 front-end는 ``React``를, back-end는 ``Django``를 사용하여 구현하기로 결정하고    
+back-end 부분을 맡아서 진행
 
 ![image](https://user-images.githubusercontent.com/46367323/77907260-4c734280-72c4-11ea-9f19-193e32af9f71.png)
 **[🔗squaremall](https://squre-mall.github.io/square-front/)**
@@ -12,7 +13,7 @@ pythonanywhere 사이트에서 서버 생성하여 해당 앱 업로드 후 서�
 ![image](https://user-images.githubusercontent.com/46367323/77908393-63b32f80-72c6-11ea-8593-66d82e826438.png)
 ![image](https://user-images.githubusercontent.com/46367323/77908531-a07f2680-72c6-11ea-9e17-46c632fa79ad.png)
 
-*테스트를 위해 상품에 대한 데이터는 [무신사스토어](https://store.musinsa.com/app/items/lists/001) 사이트로부터 크롤링하여 DB에 저장*
+**테스트를 위해 상품에 대한 데이터는 [무신사스토어](https://store.musinsa.com/app/items/lists/001) 사이트로부터 크롤링하여 DB에 저장*
 
 ### Models.py
 > Cloth 라는 의류 공통 테이블을 두고 의류의 상세 정보는 사이트마다 상이하기 때문에 사이트별로 테이블 새로 생성
@@ -83,9 +84,9 @@ class ClothSerializer(serializers.ModelSerializer):
 ```
 
 ### Filtering, Pagination, JSON Field
-> 1. 각 테이블의 컬럼에 대한 필터링 구현
-> 2. 성능 개선을 위해 페이징 처리 구현
-> 3. JSON Field를 사용하여 한 컬럼에 여러 데이터 저장
+> 1. 각 테이블의 컬럼에 대한 필터링
+> 2. 성능 개선을 위한 페이징 처리
+> 3. 한 컬럼에 여러 데이터 저장하기 위해 JSON Field를 사용
 
 ![image](https://user-images.githubusercontent.com/46367323/77909203-e5578d00-72c7-11ea-8115-534a77b058d5.png)
 
