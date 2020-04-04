@@ -7,6 +7,12 @@ back-end 부분을 맡아서 진행
 ![image](https://user-images.githubusercontent.com/46367323/77907260-4c734280-72c4-11ea-9f19-193e32af9f71.png)
 **[🔗squaremall](https://squre-mall.github.io/square-front/)**
 
+## Installation
+[pip](https://pip.pypa.io/en/stable/)를 사용하여 라이브러리 설치 *Python Version: 3.8*
+```bash
+pip install -r requirements.txt
+```
+
 ## Features
 pythonanywhere 사이트에서 서버 생성하여 해당 앱 업로드 후 서버 실행
 
