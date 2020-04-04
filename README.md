@@ -8,7 +8,7 @@ back-end 부분을 맡아서 진행
 **[🔗squaremall](https://squre-mall.github.io/square-front/)**
 
 ## Installation
-[pip](https://pip.pypa.io/en/stable/)를 사용하여 라이브러리 설치 *Python Version: 3.8*
+[pip](https://pip.pypa.io/en/stable/)를 이용하여 라이브러리 설치 *Python Version: 3.8*
 ```bash
 pip install -r requirements.txt
 ```
